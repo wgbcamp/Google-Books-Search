@@ -10,9 +10,21 @@ class mainpage extends Component {
     };
 
     componentDidMount() {
-        api.search()
+
+    }
+
+    handleInputChange = event =>{
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({
+        [name]: value
+        });
+
+
+        const data = this.state.search;
+        api.search(data)
             .then(res =>{
-                console.log(res.data.items[0])
+                console.log(res.data.items)
                 this.setState({
                     books: res.data.items.map((e)=>({
                         title: e.volumeInfo.title,
@@ -24,14 +36,6 @@ class mainpage extends Component {
                 })
 
             })
-    }
-
-    handleInputChange = event =>{
-    const name = event.target.name;
-    const value = event.target.value;
-    this.setState({
-        [name]: value
-        });
 
     }
 
