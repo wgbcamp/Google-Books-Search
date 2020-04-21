@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,12 +73,12 @@ export default function ButtonAppBar(props) {
         <Toolbar>
 
         <Grid justify="space-between" container>
-            <Grid>
+            <Grid >
           <Typography variant="h6" className={classes.title}>
             Google Books
           </Typography>
           </Grid>
-          <Grid>
+          <Grid item md={8} sm={4}>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -95,9 +96,10 @@ export default function ButtonAppBar(props) {
             />
           </div>
           </Grid>
-            <Grid>
-          <Button color="inherit">Search</Button>
-          <Button color="inherit">Saved</Button>
+            <Grid >
+            <Link to="/" style={{textDecoration: 'none', color:'white'}}><Button color="inherit">Search</Button></Link>
+            <Link to="/saved" style={{textDecoration: 'none', color: 'white'}}><Button color="inherit">Saved</Button></Link>
+          
           </Grid>
           </Grid>
 

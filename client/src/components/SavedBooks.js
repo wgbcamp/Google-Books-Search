@@ -10,15 +10,13 @@ class mainpage extends React.Component {
     };
 
     componentDidMount() {
-
-    }
-
-
-    saveBook = (props) => {
-        console.log(props)
-        api.saveBook(props)
-            .then((res) => {
-                
+        
+        api.readBooks()
+            .then((res)=>{
+                console.log(res)
+                this.setState({
+                    books: res.data
+                })
             })
     }
 
@@ -64,7 +62,6 @@ class mainpage extends React.Component {
                     authors={e.authors}
                     description={e.description}
                     link={e.link}
-                    saveBook={this.saveBook}
 
                 />
                 )}

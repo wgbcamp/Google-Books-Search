@@ -41,10 +41,10 @@ export default function MediaCard(props) {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
           Learn More
+        </Button>
+        <Button onClick={(event)=> props.saveBook(props, event)} size="small" color="primary">
+          Save
         </Button>
       </CardActions>
     </Card>
