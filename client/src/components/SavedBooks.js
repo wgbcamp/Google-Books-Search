@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ButtonAppBar from "./ButtonAppBar";
-import Results from "../components/Results";
+import SavedResults from "../components/SavedResults";
 import api from "../utils/api";
 
 class mainpage extends React.Component {
@@ -26,7 +26,10 @@ class mainpage extends React.Component {
     this.setState({
         [name]: value
         });
+    }
 
+
+    onSubmit = () =>{
 
         const data = this.state.search;
         api.search(data)
@@ -38,7 +41,8 @@ class mainpage extends React.Component {
                         authors: e.volumeInfo.authors,
                         description: e.volumeInfo.description,
                         image: ((e.volumeInfo.imageLinks) ? e.volumeInfo.imageLinks.thumbnail : undefined),
-                        link: e.saleInfo.buyLink
+                        link: e.volumeInfo.infoLink,
+                        id: e._id
                     }))
                 })
 
@@ -46,23 +50,37 @@ class mainpage extends React.Component {
 
     }
 
+    deleteBook = (id, event) =>{
+        event.preventDefault();
+
+        var thingToDelete = {
+            thingID: id
+        }
+        console.log(id)
+        api.deleteBook(thingToDelete)
+        .then(()=>{
+            window.location.reload();    
+        })
+    };
+
     render() {
         return (
             <div>
                 <ButtonAppBar
                     search={this.state.search}
                     handleInputChange={this.handleInputChange}
-
+                    onSubmit={this.onSubmit}
                 />
                 
             {[...this.state.books].map((e) =>
-                <Results 
+                <SavedResults 
                     image={e.image}
                     title={e.title}
                     authors={e.authors}
                     description={e.description}
                     link={e.link}
-
+                    id={e._id}
+                    deleteBook={this.deleteBook}
                 />
                 )}
 

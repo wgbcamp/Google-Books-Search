@@ -30,6 +30,12 @@ class mainpage extends React.Component {
         });
 
 
+
+
+    }
+
+    onSubmit = () =>{
+
         const data = this.state.search;
         api.search(data)
             .then(res =>{
@@ -40,7 +46,7 @@ class mainpage extends React.Component {
                         authors: e.volumeInfo.authors,
                         description: e.volumeInfo.description,
                         image: ((e.volumeInfo.imageLinks) ? e.volumeInfo.imageLinks.thumbnail : undefined),
-                        link: e.saleInfo.buyLink
+                        link: e.volumeInfo.infoLink
                     }))
                 })
 
@@ -54,7 +60,7 @@ class mainpage extends React.Component {
                 <ButtonAppBar
                     search={this.state.search}
                     handleInputChange={this.handleInputChange}
-
+                    onSubmit={this.onSubmit}
                 />
                 
             {[...this.state.books].map((e) =>
@@ -70,8 +76,6 @@ class mainpage extends React.Component {
                 )}
 
             </div>
-
-            
 
         )
     }

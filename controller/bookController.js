@@ -23,4 +23,17 @@ router.post('/api/books', (req, res) => {
 
 })
 
+router.post('/api/books/:id', (req, res) => {
+    let id = mongoose.Types.ObjectId(req.body.thingID);
+    console.log(id);
+	db.BookStorage.collection.deleteOne({_id: id})
+		.then(results => res.json(results))
+		.catch((err)=>{
+			console.log(err);
+		});
+
+})
+
+router.get('*', (req, res) => res.sendFile(path.resolve('client', 'build', 'index.html')));
+
 module.exports = router;

@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+ root: {
     flexGrow: 1,
   },
   menuButton: {
@@ -97,7 +97,7 @@ export default function ButtonAppBar(props) {
           </div>
           </Grid>
             <Grid >
-            <Link to="/" style={{textDecoration: 'none', color:'white'}}><Button color="inherit">Search</Button></Link>
+            <Link to="/" style={{textDecoration: 'none', color:'white'}}><Button color="inherit" onClick={props.onSubmit}>Search</Button></Link>
             <Link to="/saved" style={{textDecoration: 'none', color: 'white'}}><Button color="inherit">Saved</Button></Link>
           
           </Grid>

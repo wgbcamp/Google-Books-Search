@@ -15,5 +15,8 @@ export default {
     
       saveBook: data => {
           return axios.post('/api/books', data)
+      },
+      deleteBook: data =>{
+          return axios.post('/api/books/:id', data)
       }
 }

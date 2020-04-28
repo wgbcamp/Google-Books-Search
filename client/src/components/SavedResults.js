@@ -45,8 +45,8 @@ export default function MediaCard(props) {
         <Button size="small" color="primary">
           Learn More
         </Button>
-        <Button onClick={(event)=> props.saveBook(props, event)} size="small" color="primary">
-          Save
+        <Button onClick={(event)=> props.deleteBook(props.id, event)} value={props.id} size="small" color="primary">
+          Delete
         </Button>
       </CardActions>
     </Card>
